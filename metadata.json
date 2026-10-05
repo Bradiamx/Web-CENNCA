@@ -1,0 +1,8 @@
+{
+  "name": "CENNCA - Centro de Neurología y Neurocirugía Avanzada",
+  "description": "Sitio web oficial recuperado y modernizado de CENNCA en Toluca y Metepec. Especialistas en neurocirugía, neurología clínica, terapia endovascular, neurofisiología, neuroanestesiología y terapia intensiva.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

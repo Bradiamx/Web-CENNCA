@@ -1,11 +1,13 @@
-<div align="center">
+# cennca.com - Proyecto Web Optimizado
+Sitio web rescatado y optimizado por Bradia para Google AI Studio y despliegue continuo en Netlify.
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+## 🚀 Flujo de Trabajo
+1. **Google AI Studio**: Pide cambios a la IA en lenguaje natural (textos, colores, secciones).
+2. **GitHub**: Sube el proyecto a tu repositorio privado.
+3. **Netlify**: Cada commit despliega automáticamente en la CDN global con soporte de **Netlify Forms**.
 
-  <h1>Built with AI Studio</h2>
-
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## 💻 Desarrollo Local
+```bash
+npm install
+npm run dev
+```
