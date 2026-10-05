@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { specialties, Specialty } from '../data/cenncaData';
-import { ArrowUpRight, Activity } from 'lucide-react';
+import { ArrowUpRight, Activity, Brain, HeartPulse, Stethoscope, ShieldAlert, Cpu, Sparkles } from 'lucide-react';
 
 interface ServicesSectionProps {
   onSelectSpecialty: (specialtyId: string) => void;
   onNavigateToServices: () => void;
 }
+
+const getSpecialtyFallbackIcon = (id: string) => {
+  switch (id) {
+    case 'neurocirugia':
+      return <Brain className="w-7 h-7 text-[#00239F]" />;
+    case 'neurologia':
+      return <Activity className="w-7 h-7 text-[#00239F]" />;
+    case 'terapiaendovascular':
+      return <HeartPulse className="w-7 h-7 text-[#00239F]" />;
+    case 'neurocirugiapediatrica':
+      return <Sparkles className="w-7 h-7 text-[#00239F]" />;
+    case 'neuroanestesiologia':
+      return <Stethoscope className="w-7 h-7 text-[#00239F]" />;
+    case 'neurofisiologia':
+      return <Cpu className="w-7 h-7 text-[#00239F]" />;
+    case 'terapiaintensiva':
+      return <ShieldAlert className="w-7 h-7 text-[#00239F]" />;
+    default:
+      return <Activity className="w-7 h-7 text-[#00239F]" />;
+  }
+};
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onSelectSpecialty,
@@ -64,6 +85,8 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ specialty, onSelect }) => {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div
       onClick={onSelect}
@@ -80,15 +103,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ specialty, onSelect }) => {
 
       {/* Top Section: Icon badge */}
       <div className="relative z-10 flex items-start justify-between">
-        <div className="w-14 h-14 rounded-xl bg-white/90 backdrop-blur-md p-2 flex items-center justify-center shadow-lg group-hover:scale-105 group-hover:bg-white transition-all duration-300">
-          <img
-            src={specialty.iconSrc}
-            alt={specialty.title}
-            className="max-h-10 max-w-10 object-contain"
-            onError={(e) => {
-              (e.currentTarget as HTMLElement).style.display = 'none';
-            }}
-          />
+        <div className="w-14 h-14 rounded-xl bg-white/95 backdrop-blur-md p-2 flex items-center justify-center shadow-lg group-hover:scale-105 group-hover:bg-white transition-all duration-300">
+          {!imgError ? (
+            <img
+              src={specialty.iconSrc}
+              alt={specialty.title}
+              className="max-h-10 max-w-10 object-contain"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            getSpecialtyFallbackIcon(specialty.id)
+          )}
         </div>
       </div>
 

@@ -13,7 +13,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <div
         className="absolute inset-0 bg-cover bg-center lg:bg-right transition-all duration-700 opacity-45 sm:opacity-55"
         style={{
-          backgroundImage: `url('/wp-content/uploads/2024/07/Captura-de-Pantalla-2021-10-27-a-la-28s-29-21.45.40-640w.webp')`
+          backgroundImage: `url('/wp-content/uploads/2024/07/Captura-de-Pantalla-2021-10-27-a-la-28s-29-21.45.40-640w.webp'), url('/images/Content/Captura de Pantalla 2021-10-27 a la(s) 21.45.40.png')`
         }}
       />
 

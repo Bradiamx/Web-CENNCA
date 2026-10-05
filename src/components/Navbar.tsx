@@ -85,6 +85,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate }) => {
               src="/wp-content/uploads/2024/07/LOGO2-1920w-1.png"
               alt="CENNCA - Centro de Neurología y Neurocirugía Avanzada"
               className="h-14 sm:h-16 lg:h-20 w-auto object-contain transition-transform group-hover:scale-102"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                if (!target.dataset.fallback) {
+                  target.dataset.fallback = 'true';
+                  target.src = '/wp-content/uploads/2024/07/LOGO2-1920w-2-e1721949220334.png';
+                }
+              }}
             />
           </button>
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Specialty, clinicInfo } from '../data/cenncaData';
-import { X, CheckCircle, Stethoscope, Phone, Calendar } from 'lucide-react';
+import { X, CheckCircle, Stethoscope, Phone, Calendar, Brain, Activity, HeartPulse, Sparkles, Cpu, ShieldAlert } from 'lucide-react';
 
 interface SpecialtyModalProps {
   specialty: Specialty | null;
@@ -8,11 +8,38 @@ interface SpecialtyModalProps {
   onBookAppointment: (specialtyTitle: string) => void;
 }
 
+const getSpecialtyFallbackIcon = (id: string) => {
+  switch (id) {
+    case 'neurocirugia':
+      return <Brain className="w-8 h-8 text-[#00239F]" />;
+    case 'neurologia':
+      return <Activity className="w-8 h-8 text-[#00239F]" />;
+    case 'terapiaendovascular':
+      return <HeartPulse className="w-8 h-8 text-[#00239F]" />;
+    case 'neurocirugiapediatrica':
+      return <Sparkles className="w-8 h-8 text-[#00239F]" />;
+    case 'neuroanestesiologia':
+      return <Stethoscope className="w-8 h-8 text-[#00239F]" />;
+    case 'neurofisiologia':
+      return <Cpu className="w-8 h-8 text-[#00239F]" />;
+    case 'terapiaintensiva':
+      return <ShieldAlert className="w-8 h-8 text-[#00239F]" />;
+    default:
+      return <Activity className="w-8 h-8 text-[#00239F]" />;
+  }
+};
+
 export const SpecialtyModal: React.FC<SpecialtyModalProps> = ({
   specialty,
   onClose,
   onBookAppointment
 }) => {
+  const [imgError, setImgError] = useState(false);
+
+  React.useEffect(() => {
+    setImgError(false);
+  }, [specialty?.id]);
+
   if (!specialty) return null;
 
   return (
@@ -37,14 +64,16 @@ export const SpecialtyModal: React.FC<SpecialtyModalProps> = ({
           <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-white p-2.5 shadow-lg flex items-center justify-center shrink-0">
-                <img
-                  src={specialty.iconSrc}
-                  alt={specialty.title}
-                  className="max-h-12 max-w-12 object-contain"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLElement).style.display = 'none';
-                  }}
-                />
+                {!imgError ? (
+                  <img
+                    src={specialty.iconSrc}
+                    alt={specialty.title}
+                    className="max-h-12 max-w-12 object-contain"
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  getSpecialtyFallbackIcon(specialty.id)
+                )}
               </div>
               <div className="text-white">
                 <span className="text-xs font-bold text-[#38BDF8] uppercase tracking-wider">

@@ -1,11 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { specialties, clinicInfo } from '../data/cenncaData';
-import { Activity, CheckCircle, Calendar, Phone, ChevronRight } from 'lucide-react';
+import { Activity, CheckCircle, Calendar, Phone, ChevronRight, Brain, HeartPulse, Stethoscope, ShieldAlert, Cpu, Sparkles } from 'lucide-react';
 
 interface ServiciosViewProps {
   highlightSpecialtyId?: string;
   onBookAppointment: (specialtyTitle: string) => void;
 }
+
+const getSpecialtyFallbackIcon = (id: string) => {
+  switch (id) {
+    case 'neurocirugia':
+      return <Brain className="w-8 h-8 text-[#00239F]" />;
+    case 'neurologia':
+      return <Activity className="w-8 h-8 text-[#00239F]" />;
+    case 'terapiaendovascular':
+      return <HeartPulse className="w-8 h-8 text-[#00239F]" />;
+    case 'neurocirugiapediatrica':
+      return <Sparkles className="w-8 h-8 text-[#00239F]" />;
+    case 'neuroanestesiologia':
+      return <Stethoscope className="w-8 h-8 text-[#00239F]" />;
+    case 'neurofisiologia':
+      return <Cpu className="w-8 h-8 text-[#00239F]" />;
+    case 'terapiaintensiva':
+      return <ShieldAlert className="w-8 h-8 text-[#00239F]" />;
+    default:
+      return <Activity className="w-8 h-8 text-[#00239F]" />;
+  }
+};
+
+const SpecialtyCardIcon: React.FC<{ iconSrc: string; title: string; id: string }> = ({ iconSrc, title, id }) => {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="w-16 h-16 rounded-2xl bg-white p-2.5 shadow-lg flex items-center justify-center shrink-0">
+      {!imgError ? (
+        <img
+          src={iconSrc}
+          alt={title}
+          className="max-h-12 max-w-12 object-contain"
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        getSpecialtyFallbackIcon(id)
+      )}
+    </div>
+  );
+};
 
 export const ServiciosView: React.FC<ServiciosViewProps> = ({
   highlightSpecialtyId,
@@ -76,16 +116,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({
                 {/* Header bar of card without "Especialidad #X" chip */}
                 <div className="bg-gradient-to-r from-[#00176b] via-[#00239F] to-[#0a2f8c] text-white p-6 sm:p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-white p-2.5 shadow-lg flex items-center justify-center shrink-0">
-                      <img
-                        src={s.iconSrc}
-                        alt={s.title}
-                        className="max-h-12 max-w-12 object-contain"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLElement).style.display = 'none';
-                        }}
-                      />
-                    </div>
+                    <SpecialtyCardIcon iconSrc={s.iconSrc} title={s.title} id={s.id} />
                     <div>
                       <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
                         {s.title}
