@@ -441,61 +441,30 @@ export const NosotrosView: React.FC<NosotrosViewProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Estructura en 2 Filas con Logos Prominentes y Jerarquía Limpia */}
-          <div className="space-y-6 max-w-7xl mx-auto">
-            {/* Fila 1: 5 Instituciones y Hospitales de Especialidad */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-              {endorsingInstitutions.slice(0, 5).map((inst) => (
+          {/* Cuadrícula Responsiva Unificada de Logos Institucionales */}
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-5 items-stretch">
+              {endorsingInstitutions.map((inst, idx) => (
                 <div 
                   key={inst.id}
-                  className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-400/60 transition-all duration-300 flex flex-col items-center justify-between text-center group h-full"
+                  className={`bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-400/60 transition-all duration-300 flex flex-col items-center justify-between text-center group h-full ${
+                    idx === endorsingInstitutions.length - 1 ? 'col-span-2 sm:col-span-1 max-w-[280px] sm:max-w-none mx-auto w-full' : ''
+                  }`}
                 >
-                  {/* Contenedor del Logo con Máximo Protagonismo */}
-                  <div className="w-full h-32 sm:h-36 flex items-center justify-center p-3 rounded-xl bg-slate-50/70 border border-slate-100 group-hover:bg-blue-50/30 group-hover:border-blue-100 transition-colors">
+                  {/* Contenedor del Logo con Proporciones Óptimas para Mobile y Desktop */}
+                  <div className="w-full h-24 sm:h-28 lg:h-32 flex items-center justify-center p-2.5 sm:p-3 rounded-xl bg-slate-50/70 border border-slate-100 group-hover:bg-blue-50/30 group-hover:border-blue-100 transition-colors">
                     {inst.logo ? (
                       <img 
                         src={inst.logo} 
                         alt={inst.name} 
-                        className="max-h-24 sm:max-h-28 max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300 drop-shadow-2xs"
+                        className="max-h-16 sm:max-h-20 lg:max-h-24 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300 drop-shadow-2xs"
                         loading="lazy"
                       />
                     ) : null}
                   </div>
 
-                  {/* Título y subtítulo en formato compacto y sobrio */}
-                  <div className="w-full pt-3.5 space-y-1">
-                    <h3 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug group-hover:text-[#00239F] transition-colors line-clamp-2">
-                      {inst.name}
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-slate-500 font-medium leading-tight line-clamp-2">
-                      {inst.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Fila 2: 4 Universidades y Hospitales Centrados */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
-              {endorsingInstitutions.slice(5).map((inst) => (
-                <div 
-                  key={inst.id}
-                  className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-400/60 transition-all duration-300 flex flex-col items-center justify-between text-center group h-full"
-                >
-                  {/* Contenedor del Logo con Máximo Protagonismo */}
-                  <div className="w-full h-32 sm:h-36 flex items-center justify-center p-3 rounded-xl bg-slate-50/70 border border-slate-100 group-hover:bg-blue-50/30 group-hover:border-blue-100 transition-colors">
-                    {inst.logo ? (
-                      <img 
-                        src={inst.logo} 
-                        alt={inst.name} 
-                        className="max-h-24 sm:max-h-28 max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300 drop-shadow-2xs"
-                        loading="lazy"
-                      />
-                    ) : null}
-                  </div>
-
-                  {/* Título y subtítulo en formato compacto y sobrio */}
-                  <div className="w-full pt-3.5 space-y-1">
+                  {/* Título y descripción con tipografía calibrada para pantallas táctiles */}
+                  <div className="w-full pt-3 space-y-1">
                     <h3 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug group-hover:text-[#00239F] transition-colors line-clamp-2">
                       {inst.name}
                     </h3>

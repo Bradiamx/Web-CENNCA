@@ -316,11 +316,11 @@ export const specialties: Specialty[] = [
     shortDesc: "Estudio de la función del sistema nervioso mediante técnicas fisiológicas y monitoreo intraoperatorio continuo.",
     fullDesc: "La neurofisiología clínica se encarga de estudiar la función y disfunción del sistema nervioso producida por enfermedades del cerebro, médula espinal, nervio periférico, músculo y órganos de los sentidos. Para ello se utilizan técnicas fisiológicas y de imagen para medir la actividad del sistema nervioso con fines diagnósticos, pronósticos y terapéuticos. Apoyamos en la Monitorización intraoperatoria en intervenciones quirúrgicas como: cirugía de la epilepsia, estimulación cerebral profunda en Parkinson, monitorización en cirugías cerebrales y de columna, cirugía de aneurismas, cirugía de nervios periféricos y nervios craneales.",
     iconSrc: "/wp-content/uploads/2024/07/2-1-e1721936182957.png",
-    imageBg: "/images/Content/EEG.jpeg",
+    imageBg: "/images/Content/monitoreo transop.png",
     galleryLayout: "grid-1x2",
     gallery: [
-      { src: "/images/Content/EEG.jpeg" },
-      { src: "/images/Content/monitoreo transop.png" }
+      { src: "/images/Content/monitoreo transop.png" },
+      { src: "/images/Content/Captura de Pantalla 2021-10-27 a la(s) 22.07.06.png" }
     ],
     conditions: [],
     procedures: [
